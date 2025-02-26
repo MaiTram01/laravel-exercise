@@ -7,8 +7,9 @@
 </head>
 <body>
     <h1>Product List</h1>
-    <div id="product-list"></div>
+    <div id="product-list">
 
+    </div>
     <script>
         fetch('http://127.0.0.1:8000/api/data')  
             .then(response => response.json())
