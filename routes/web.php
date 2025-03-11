@@ -6,24 +6,41 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-use App\Http\Controllers\ProductController;		
-Route::get('/products', [ProductController::class, 'index'])->name('products.index');
-Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
-Route::post('/products/store', [ProductController::class, 'store'])->name('products.store');
-Route::get('/products/{id}/edit', [ProductController::class, 'edit'])->name('products.edit');
-Route::put('/products/{id}', [ProductController::class, 'update'])->name('products.update');
-Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
+Route::get('/trangchu', [PageController::class, 'getIndex']);
+Route::get('/type/{id}', [PageController::class, 'getLoaiSp']);	
+					
+Route::get(uri: '/detail/{id}', action: [PageController::class, 'getDetail']);
 
+Route::get(uri: '/contact', action: [PageController::class, 'getContact']);
 
-Route::get('index', [PageController::class, 'getIndex'])->name('trang-chu');
+Route::get(uri: '/about', action: [PageController::class, 'getAbout']);
 
-Route::get('loai-san-pham', [PageController::class, 'getLoaiSp'])->name('loaisanpham');
-		
-Route::get('chi-tiet-san-pham', [PageController::class, 'getChitiet'])->name('chitietsanpham');
+// CART
+Route::get(uri: '/add-to-cart/{id}', action: [PageController::class, 'getAddToCart'])->name('themgiohang');
 
-Route::get('lien_he', [PageController::class, 'getLienhe'])->name('lienhe');
+Route::get(uri: '/del-cart/{id}', action: [PageController::class, 'getDelItemCart'])->name('xoagiohang');
 
-Route::get('gioi_thieu', [PageController::class, 'getAbout'])->name('about');
+// CHECKOUT
+Route::get(uri: '/check-out', action: [PageController::class, 'getCheckout'])->name('dathang');
 
+Route::post(uri: '/check-out', action: [PageController::class, 'postCheckout'])->name('dathang');
+
+Route::get(uri: '/admin', action: [PageController::class, 'getIndexAdmin']);
+
+Route::get(uri: '/admin-add', action: [PageController::class, 'getAdminAdd'])->name('add-product');
+
+Route::post(uri: '/admin-add-form', action: [PageController::class, 'postAdminAdd']);
+
+Route::get(uri: '/admin-edit/{id}', action: [PageController::class, 'getAdminEdit']);
+
+Route::post(uri: '/admin-edit/{id}', action: [PageController::class, 'postAdminEdit']);
+
+Route::post(uri: '/admin-delete/{id}', action: [PageController::class, 'postAdminDelete']);
+
+Route::get(uri: '/admin-export', action: [PageController::class, 'exportAdminProduct'])->name('export');
+
+Route::get(uri: '/return-vnpay', action: function () {
+    return view(view: 'vnpay.return-vnpay');
+});
 
 

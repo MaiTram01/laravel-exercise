@@ -1,25 +1,27 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use App\Models\Slide;
+use App\Models\Product;
+use App\Models\TypeProduct;
 
-use Illuminate\Http\Request;
-
-class PageController extends Controller
+class PageController 
 {
-    public function getIndex(){			
-    	return view('page.trangchu');		
+    public function getIndex()
+    {
+        $slide = Slide::all();
+        $newproducts = Product::where('new', 1)->paginate(4);
+        $promotion_products = Product::where('promotion_price', '<>', 0)->paginate(8);
+        return view('page.trangchu', compact('slide', 'newproducts', 'promotion_products'));
     }
-    public function getLoaiSp(){				
-        return view('page.loai_sanpham');			
-    }		
-    public function getChitiet(){			
-	    return view('page.chitiet_sanpham');			
-	    }			
-    public function getLienhe(){		
-        return view('page.lienhe');		
-        }		
-    public function getAbout(){			
-        return view('page.about');			
-        }			
-        
+    public function getLoaiSp($type)									
+        {									
+        $sp_theoloai = Product::where('id_type', $type)->get();									
+        $type_product = TypeProduct::all();									
+        $sp_khac = Product::where('id_type', '<>', $type)->paginate(3);									
+                                            
+        return view('page.loai_sanpham', compact('sp_theoloai', 'type_product', 'sp_khac'));									
+        }									
 }
