@@ -27,14 +27,14 @@ Route::post(uri: '/check-out', action: [PageController::class, 'postCheckout'])-
 
 Route::get(uri: '/admin', action: [PageController::class, 'getIndexAdmin']);
 
-Route::get(uri: '/admin-add', action: [PageController::class, 'getAdminAdd'])->name('add-product');
+Route::get(uri: '/admin-add-form', action: [PageController::class, 'getAdminAdd'])->name('add-product');
 
 Route::post(uri: '/admin-add-form', action: [PageController::class, 'postAdminAdd']);
 
-Route::get(uri: '/admin-edit/{id}', action: [PageController::class, 'getAdminEdit']);
+Route::get(uri: '/admin-edit-form/{id}', action: [PageController::class, 'getAdminEdit']);
 
-Route::post(uri: '/admin-edit/{id}', action: [PageController::class, 'postAdminEdit']);
-
+Route::post(uri: '/admin-edit', action: [PageController::class, 'postAdminEdit']);
+//
 Route::post(uri: '/admin-delete/{id}', action: [PageController::class, 'postAdminDelete']);
 
 Route::get(uri: '/admin-export', action: [PageController::class, 'exportAdminProduct'])->name('export');
