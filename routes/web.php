@@ -14,6 +14,7 @@ Route::get(uri: '/detail/{id}', action: [PageController::class, 'getDetail']);
 Route::get(uri: '/contact', action: [PageController::class, 'getContact']);
 
 Route::get(uri: '/about', action: [PageController::class, 'getAbout']);
+Route::post(uri: '/search', action: [PageController::class, 'postSearch'])->name('search');
 
 // CART
 Route::get(uri: '/add-to-cart/{id}', action: [PageController::class, 'getAddToCart'])->name('themgiohang');
